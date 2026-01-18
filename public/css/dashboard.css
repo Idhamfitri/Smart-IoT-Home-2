@@ -1,0 +1,56 @@
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: #f4f6f9;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  color: white;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 30px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.chart-section {
+  margin: 30px;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* Login */
+.login-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-card {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 320px;
+}
+
+input, button {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+}
+

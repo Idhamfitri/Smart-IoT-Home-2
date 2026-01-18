@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="card">
+    <h2>Smart Home Dashboard</h2>
+
+    <p id="presence">Presence: --</p>
+    <p id="temp">Temperature: --</p>
+    <p id="air">Air Quality: --</p>
+    <p id="fan">Fan: --</p>
+
+    <canvas id="chart"></canvas>
+    <a href="/logout">Logout</a>
+  </div>
+
+  <script>
+    const labels = [], values = [];
+    const chart = new Chart(
+      document.getElementById("chart"), {
+        type: "line",
+        data: {
+          labels,
+          datasets: [{ label: "Air Quality", data: values }]
+        }
+      }
+    );
+
+    async function load() {
+      const r = await fetch("/api/latest");
+      const d = await r.json();
+      if (!d.timestamp) return;
+
+      document.getElementById("presence").innerText =
+        "Presence: " + (d.presence ? "Detected" : "Not Detected");
+      document.getElementById("temp").innerText =
+        "Temperature: " + d.temperature + " °C";
+      document.getElementById("air").innerText =
+        "Air Quality: " + d.air_quality;
+      document.getElementById("fan").innerText =
+        "Fan: " + d.fan_status;
+
+      labels.push(new Date(d.timestamp).toLocaleTimeString());
+      values.push(d.air_quality);
+      if (labels.length > 10) { labels.shift(); values.shift(); }
+      chart.update();
+    }
+
+    setInterval(load, 5000);
+  </script>
+</body>
+</html>

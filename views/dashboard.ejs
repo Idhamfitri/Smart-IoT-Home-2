@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>IoT Dashboard</title>
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<header>
+  <h2>Smart Home IoT Dashboard</h2>
+  <a href="/logout">Logout</a>
+</header>
+
+<section class="cards">
+  <div class="card">
+    <h4>Presence</h4>
+    <p id="presence"><%= data.presence ? "Detected" : "Not Detected" %></p>
+  </div>
+
+  <div class="card">
+    <h4>Temperature</h4>
+    <p id="temperature"><%= data.temperature %> °C</p>
+  </div>
+
+  <div class="card">
+    <h4>Air Quality</h4>
+    <p id="air"><%= data.air_quality %></p>
+  </div>
+
+  <div class="card">
+    <h4>Fan Status</h4>
+    <p id="fan"><%= data.fan_status %></p>
+  </div>
+</section>
+
+<section class="chart-section">
+  <canvas id="airChart"></canvas>
+</section>
+
+<script src="/js/dashboard.js"></script>
+</body>
+</html>
